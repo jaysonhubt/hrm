@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\RecruitmentRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('/requirements', RecruitmentRequestController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('/candidates', CandidateController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('/schedules', ScheduleController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
