@@ -67,9 +67,9 @@ class RecruitmentRequestController extends Controller
             if($request->hasFile('jd')) {
                 $file = $request->jd;
                 $filename = (string)Str::uuid() . "." . $file->getClientOriginalExtension();
-                $path = 'uploads/' . $filename;
+                $path = 'uploads/jds/' . $filename;
                 $customRequest = array_merge($customRequest, ['jd_url' => $path]);
-                $file->storeAs('uploads', $filename, 'local');
+                $file->storeAs('uploads/jds', $filename, 'local');
             }
             $post = $this->recruitmentRequestService->create($customRequest);
 
@@ -121,15 +121,19 @@ class RecruitmentRequestController extends Controller
     public function update(UpdateRecruitmentRequest $request, $id)
     {
         try {
-            $customRequest = $request->all();
+            $customRequest = $request->validated();
             if($request->hasFile('jd')) {
                 $file = $request->jd;
                 $filename = (string)Str::uuid() . "." . $file->getClientOriginalExtension();
-                $path = 'uploads/' . $filename;
+                $path = 'uploads/jds/' . $filename;
                 $customRequest = array_merge($customRequest, ['jd_url' => $path]);
-                $file->storeAs('uploads', $filename, 'local');
+                $requirement = $this->recruitmentRequestService->find($id);
+                if($requirement->jd_url) {
+                    Storage::delete($requirement->jd_url);
+                }
+                $file->storeAs('uploads/jds', $filename, 'local');
             }
-            $requirement = $this->recruitmentRequestService->update($request->all(), $id);
+            $requirement = $this->recruitmentRequestService->update($customRequest, $id);
 
             return response()->json([
                 'status_code' => 200,
@@ -151,7 +155,9 @@ class RecruitmentRequestController extends Controller
     {
         try {
             $requirement = $this->recruitmentRequestService->find($id);
-            Storage::delete($requirement->jd_url);
+            if($requirement->jd_url) {
+                Storage::delete($requirement->jd_url);
+            }
             $this->recruitmentRequestService->delete($id);
 
             return response()->json([
