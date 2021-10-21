@@ -50,7 +50,7 @@ class CreateCandidateRequest extends FormRequest
             ],
             'cv' => [
                 'nullable',
-                'mimes:jpeg,png,jpg,gif,svg',
+                'mimes:jpeg,png,jpg,gif,svg,pdf,docx,doc',
                 'max:5120'
             ],
         ];
