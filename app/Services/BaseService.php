@@ -11,6 +11,11 @@ class BaseService
         return $this->repository->all($columns);
     }
 
+    public function get($relationships = [], array $columns = ['*'])
+    {
+        return $this->repository->get($relationships, $columns);
+    }
+
     public function count(array $where = [], $columns = '*')
     {
         return $this->repository->count($where, $columns);

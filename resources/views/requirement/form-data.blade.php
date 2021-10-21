@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'HRM | Tạo Yêu Cầu Tuyển Dụng')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Requirement Form</h1>

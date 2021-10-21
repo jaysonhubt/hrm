@@ -16,6 +16,11 @@ class BaseRepository
         return $this->model->all($columns);
     }
 
+    public function get($relationships = [], array $columns = ['*'])
+    {
+        return $this->model->with($relationships)->get($columns);
+    }
+
     public function count(array $where = [], $columns = '*')
     {
         if ($where) {

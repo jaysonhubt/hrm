@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'HRM | Thêm Ứng Viên')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Candidate Form</h1>
