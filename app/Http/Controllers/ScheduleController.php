@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\ScheduleService;
 use App\Services\CandidateService;
 use App\Services\UserService;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 use App\Http\Requests\ScheduleRequest\CreateSchedule as CreateScheduleRequest;
 use App\Http\Requests\ScheduleRequest\UpdateSchedule as UpdateScheduleRequest;
@@ -25,6 +26,8 @@ class ScheduleController extends Controller
      * Create a new controller instance.
      *
      * @param ScheduleService $scheduleService
+     * @param CandidateService $candidateService
+     * @param UserService $userService
      */
     public function __construct(
         ScheduleService $scheduleService,
@@ -39,26 +42,31 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return bool|\Illuminate\Auth\Access\Response|Factory|View
      */
     public function index()
     {
-        $viewData['schedules'] = $this->scheduleService->all();
+        $result = $this->scheduleService->get(['user', 'candidate']);
 
-        return view('schedule.index', $viewData);
+        return view('schedule.index', compact([
+            'result'
+        ]));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return bool|\Illuminate\Auth\Access\Response|Factory|View
      */
     public function create()
     {
-        $viewData['candidates'] = $this->candidateService->all();
-        $viewData['users'] = $this->userService->all();
+        $candidates = $this->candidateService->all();
+        $users = $this->userService->all();
 
-        return view('schedule.form-data', $viewData);
+        return view('schedule.form-data', compact([
+            'candidates',
+            'users'
+        ]));
     }
 
     /**
@@ -73,7 +81,7 @@ class ScheduleController extends Controller
             $customRequest = $request->validated();
             $post = $this->scheduleService->create($customRequest);
 
-            return redirect()->route('schedules.index')->with('success', 'Thêm thành công'); 
+            return redirect()->route('schedules.index')->with('success', 'Thêm thành công');
         } catch (Exception $err) {
             throw $err;
         }
