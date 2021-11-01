@@ -15,8 +15,8 @@ class UpdateStartTimeAndEndTimeColumnRequirementTable extends Migration
     {
         Schema::table('recruitment_requests', function($table)
         {
-            $table->timestamp('start_time')->nullable()->change();
-            $table->timestamp('end_time')->nullable()->change();
+            $table->datetime('start_time')->nullable()->change();
+            $table->datetime('end_time')->nullable()->change();
         });
     }
 
