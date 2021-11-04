@@ -290,6 +290,23 @@ return [
                 ]
             ]
         ],
+
+        [
+            'text' => 'Bộ câu hỏi',
+            'icon' => 'fa fa-question-circle',
+            'submenu' => [
+                [
+                    'text' => 'Tạo câu hỏi',
+                    'url'  => 'questions/create',
+                    'icon' => 'fa fa-plus',
+                ],
+                [
+                    'text' => 'Bộ câu hỏi',
+                    'url'  => 'questions',
+                    'icon' => 'fa fa-list'
+                ]
+            ]
+        ],
     ],
 //        [
 //            'text' => 'blog',
