@@ -78,8 +78,7 @@ class ScheduleController extends Controller
     public function store(CreateScheduleRequest $request)
     {
         try {
-            $customRequest = $request->validated();
-            $post = $this->scheduleService->create($customRequest);
+            $post = $this->scheduleService->create($request->validated());
 
             return redirect()->route('schedules.index')->with('success', 'Thêm thành công');
         } catch (Exception $err) {
@@ -123,8 +122,7 @@ class ScheduleController extends Controller
     public function update(UpdateScheduleRequest $request, $id)
     {
         try {
-            $customRequest = $request->validated();
-            $schedule = $this->scheduleService->update($customRequest, $id);
+            $schedule = $this->scheduleService->update($request->validated(), $id);
 
             return redirect()->route('schedules.index')->with('success',  'Sửa thành công');
         } catch (Exception $err) {
