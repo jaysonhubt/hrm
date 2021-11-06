@@ -1,15 +1,19 @@
 @extends('adminlte::page')
 
+@if(isset($question))
+@section('title', 'HRM | Cập Nhật Câu Hỏi')
+@else 
 @section('title', 'HRM | Tạo Câu Hỏi')
+@endif
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Tạo câu hỏi</h1>
+    <h1 class="m-0 text-dark">{{ isset($question) ? 'Cập nhật' : 'Tạo' }} câu hỏi</h1>
 @stop
 
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Tạo câu hỏi</h3>
+            <h3 class="card-title">{{ isset($question) ? 'Cập nhật' : 'Tạo' }} câu hỏi</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -34,7 +38,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="answer-input">Đáp án</label>
+                    <label for="answer-input">Tham khảo</label>
                     <textarea class="form-control" id="answer-input" name="answer" placeholder="" required>{{ old('answer') }}</textarea>
                 </div>
                 @error('answer-input')
@@ -72,7 +76,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-group">
-                    <label for="answer-input">Đáp án</label>
+                    <label for="answer-input">Tham khảo</label>
                     <textarea class="form-control" id="answer-input" name="answer" placeholder="" required>{{ $question->answer }}</textarea>
                 </div>
                 @error('answer-input')
@@ -94,7 +98,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Tạo</button>
+                <button type="submit" class="btn btn-primary">{{ isset($question) ? 'Cập nhật' : 'Tạo' }}</button>
             </div>
         </form>
         @endif
