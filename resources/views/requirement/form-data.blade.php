@@ -116,7 +116,7 @@
                 @enderror
                 <div class="form-group  col-sm-12 col-12">
                     <label for="desc-input">Mô tả</label>
-                    <textarea class="form-control" id="desc-input" name="description" placeholder="">{{ $requirement->description }}</textarea>
+                    <textarea class="form-control" id="desc-input" name="description" placeholder="">{!! $requirement->description !!}</textarea>
                 </div>
                 @error('desc-input')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -171,7 +171,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">{{ isset($requirement) ? 'Cập nhật' : 'Tạo' }}</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </form>
         @endif

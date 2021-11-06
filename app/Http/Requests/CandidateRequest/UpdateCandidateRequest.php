@@ -30,7 +30,7 @@ class UpdateCandidateRequest extends FormRequest
             'email' => [
                 'nullable',
                 'email:rfc',
-                'unique:candidates,email'
+                'unique:candidates,email,' . $this->route('candidate')
             ],
             'phone_number' => [
                 'nullable',

@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->position }}</td>
-                        <td>{{ $item->description }}</td>
+                        <td>{!! $item->description !!}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>
                             <a href="{{ asset($item->jd_url) }}">
