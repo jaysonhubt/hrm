@@ -22,6 +22,9 @@ use App\Http\Controllers\QuestionController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/upload', [App\Http\Controllers\CandidateController::class, 'upload'])->name('get_upload');
+Route::post('/upload', [App\Http\Controllers\HomeController::class, 'upload'])->name('upload');
+Route::get('/getLink', [App\Http\Controllers\HomeController::class, 'getLinkData'])->name('getLinkData');
 
 Route::resource('/requirements', RecruitmentRequestController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('/candidates', CandidateController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);

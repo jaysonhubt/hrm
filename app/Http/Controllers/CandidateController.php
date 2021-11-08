@@ -49,6 +49,16 @@ class CandidateController extends Controller
         return view('candidate.form-data');
     }
 
+    public function upload()
+    {
+        return view('candidate.index');
+    }
+
+    public function postUpload(Request $request)
+    {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
