@@ -51,7 +51,7 @@ class CandidateController extends Controller
 
     public function upload()
     {
-        return view('candidate.index');
+        return view('candidate.upload');
     }
 
     public function postUpload(Request $request)
@@ -78,7 +78,7 @@ class CandidateController extends Controller
             }
             $post = $this->candidateService->create($customRequest);
 
-            return redirect()->route('candidates.index')->with('success', 'Thêm thành công'); 
+            return redirect()->route('candidates.index')->with('success', 'Thêm thành công');
         } catch (Exception $err) {
             throw $err;
         }
