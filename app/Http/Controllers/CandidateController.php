@@ -49,6 +49,16 @@ class CandidateController extends Controller
         return view('candidate.form-data');
     }
 
+    public function upload()
+    {
+        return view('candidate.upload');
+    }
+
+    public function postUpload(Request $request)
+    {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -68,7 +78,7 @@ class CandidateController extends Controller
             }
             $post = $this->candidateService->create($customRequest);
 
-            return redirect()->route('candidates.index')->with('success', 'Thêm thành công'); 
+            return redirect()->route('candidates.index')->with('success', 'Thêm thành công');
         } catch (Exception $err) {
             throw $err;
         }

@@ -307,6 +307,11 @@ return [
                 ]
             ]
         ],
+        [
+            'text'       => 'Upload',
+            'icon_color' => 'red',
+            'url'        => '/upload',
+        ],
     ],
 //        [
 //            'text' => 'blog',
