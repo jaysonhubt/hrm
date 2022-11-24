@@ -1,7 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+/public/vendor/
 /storage/*.key
+/storage/debugbar
 /vendor
 .env
 .env.backup
@@ -13,3 +15,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+worker.log
+/storage

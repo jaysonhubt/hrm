@@ -74,6 +74,20 @@ services:
       - "8888:80"
     networks:
       - backend
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    ports:
+      - "9200:9200"
+    networks:
+      - backend
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.11.0
+    networks:
+      - backend
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
 
 networks:
   frontend:
